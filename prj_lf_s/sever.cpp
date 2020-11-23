@@ -1,14 +1,9 @@
 #include "server.h"
-#include "ui_main.h"
+#include <QtWidgets>
+#include <QtNetwork>
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+Server::server(QWidget *parent)
+    : QDialog(parent)
 {
-    ui->setupUi(this);
-}
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+setWindowFlags(windowFlags() & -Qt::WindowContextHelpButtonHint);

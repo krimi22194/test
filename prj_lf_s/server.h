@@ -8,18 +8,18 @@ class QLabel;
 class QPushButton;
 class QLocalServeur;
 QT_END_NAMESPACE
-class serveur : public QDialog
+class Server : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit serveur(QWidget *parent = nullptr);
+    explicit Server(QWidget *parent = nullptr);
 
 private slots:
     void sendFortune();
 
 private:
-    QLocalServeur *serveur;
+    QLocalServeur *server;
     QStringList fortunes;
 };
 

@@ -1,14 +1,18 @@
+#include <QtWidgets>
+#include <QtNetwork>
+
 #include "client.h"
-#include "ui_main.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+Client::Client(QWidget *parent)
+    : QDialog(parent),
+      hostLineEdit(new QLineEdit("fortune")),
+      getFortuneButton(new QPushButton(tr("get Fortune"))),
+      statusLabel(new QLabel(tr("this examples requires that you run the "
+                                "Local Fortune server example as well."))),
+      socket(new QlocalSocket(this))
 {
-    ui->setupUi(this);
+
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+
+

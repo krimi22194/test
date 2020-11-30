@@ -5,20 +5,35 @@
 #include <QDataStream>
 #include<QLocalSocket>
 
-namespace Ui {
-class MainWindow;
-}
+QT_BEGIN_NAMESPACE
+class QLabel;
+class QLineEdit;
+class QPushButton;
+QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class Client : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    explicit clien(QWidget *parent = nullptr);
 
-private:
-    Ui::MainWindow *ui;
+private slots:
+    void requestNewFortune();
+    void readFortune();
+    void displayError(QLocalSocket::LocalSockettError socketError);
+    void enableGetFortuneButton();
+
+   private:
+    QLineEdit *hostLineEdit;
+    QPushButton *getFortuneButton;
+    QLabel *statuslabel;
+
+    QLocalSocket *socket;
+    QDataStream in;
+    quint32 blockSize;
+
+    QString currentFortune;
 };
 
-#endif // CLIENT_H
+#endif

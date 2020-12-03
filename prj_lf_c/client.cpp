@@ -77,3 +77,33 @@ void Client::readFortune()
     statusLabel->setText(currentFortune);
     getFortuneButton->setEnabled(true);
 }
+void Client::displayError(QLocalSocket::LocalSoketError socketError)
+{
+    switch (socketError){
+    case QLocalsSocket::ServerNotFoundEroor:
+        QMessageBox::information(this, tr("local forrtune Client"),
+                                 tr("the host was not found. please make sure"
+                                    "that the server name is correct."));
+
+        break;
+    case QLocaleSocket::ConnectionRefusedError:
+        QMessageBox::information(this, tr("Local Fortune Client"),
+                                 tr("the connection was refused by the peer."
+                                    "make sure the fortune server is running",
+                                    "is correct"));
+        break;
+    case QLocalSocket::PeerClosedError:
+        break;
+    default:
+        QMessageBox::information(this, tr("Local Fortune Client"),
+                                 tr("The following error occured: %1.")
+                                 .arg(socket->errorString()));
+    }
+
+    getFortuneButton->setenabled(true);
+}
+void Client::enableGetFortuneButton()
+{
+    getFortuneButton->setEnabled(!hostLineEdit->text().isEmpty());
+
+}

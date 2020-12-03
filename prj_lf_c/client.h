@@ -1,9 +1,9 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include<QDialog>
+#include <QDialog>
 #include <QDataStream>
-#include<QLocalSocket>
+#include<QLocaleSocket>
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -16,7 +16,7 @@ class Client : public QDialog
     Q_OBJECT
 
 public:
-    explicit clien(QWidget *parent = nullptr);
+    explicit Client(QWidget *parent = nullptr);
 
 private slots:
     void requestNewFortune();
@@ -27,7 +27,7 @@ private slots:
    private:
     QLineEdit *hostLineEdit;
     QPushButton *getFortuneButton;
-    QLabel *statuslabel;
+    QLabel *statusLabel;
 
     QLocalSocket *socket;
     QDataStream in;

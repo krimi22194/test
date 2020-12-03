@@ -11,7 +11,7 @@ Client::Client(QWidget *parent)
                                 "Local Fortune server example as well."))),
       socket(new QlocalSocket(this))
 {
-    setWindowFlags(windowFlags()& ~QT::WindowContextHelpButtonHint);
+    setWindowFlags(windowFlags()& ~Qt::WindowContextHelpButtonHint);
     QLabel *hostLabel = new QLabel(tr("&Server name"));
     hostLabel->setBuddy(hostLineEdit);
 

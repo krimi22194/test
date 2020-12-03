@@ -1,5 +1,5 @@
 #include <QtWidgets>
-#include <QtNetwork>
+#include <QtNetwork/>
 
 #include "client.h"
 
@@ -9,9 +9,9 @@ Client::Client(QWidget *parent)
       getFortuneButton(new QPushButton(tr("get Fortune"))),
       statusLabel(new QLabel(tr("this examples requires that you run the "
                                 "Local Fortune server example as well."))),
-      socket(new QlocalSocket(this))
+      socket(new QLocalSocket(this))
 {
-    setWindowFlags(windowFlags()& ~Qt::WindowContextHelpButtonHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     QLabel *hostLabel = new QLabel(tr("&Server name"));
     hostLabel->setBuddy(hostLineEdit);
 
@@ -62,14 +62,14 @@ void Client::readFortune()
         in >> blockSize;
 
     }
-    if(socket->bytesAvailable() < blockSize || in.at.atEnd())
+    if(socket->bytesAvailable() < blockSize || in.atEnd())
         return;
 
     QString nexFortune;
     in << nexFortune;
 
     if(nexFortune == currentFortune){
-        QTime::singleShot(0, this, &Client::requestNewFortune);
+        QTimer::singleShot(0, this, &Client::requestNewFortune);
         return;
     }
 
@@ -100,7 +100,7 @@ void Client::displayError(QLocalSocket::LocalSoketError socketError)
                                  .arg(socket->errorString()));
     }
 
-    getFortuneButton->setenabled(true);
+    getFortuneButton->setEnabled(true);
 }
 void Client::enableGetFortuneButton()
 {

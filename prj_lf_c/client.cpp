@@ -1,5 +1,5 @@
 #include <QtWidgets>
-#include <QtNetwork/>
+#include <QtNetwork>
 
 #include "client.h"
 
@@ -32,7 +32,7 @@ Client::Client(QWidget *parent)
     connect(getFortuneButton,&QPushButton::clicked,
             this,&Client::requestNewFortune);
     connect(quitButton,&QPushButton::clicked,this, &Client::close);
-    connect(socket,&QLocalSocket::redyRead,this,&Client::readFortune);
+    connect(socket,&QLocalSocket::readyRead,this,&Client::readFortune);
     connect(socket, QOverload<QLocalSocket::LocalSocketError>::of(&QLocalSocket::error),
             this,&Client::displayError);
 
@@ -51,7 +51,7 @@ void Client::requestNewFortune()
     getFortuneButton->setEnabled(false);
     blockSize = 0;
     socket->abort();
-    socket->connectToSserver(hostLineEdit->text());
+    socket->connectToServer(hostLineEdit->text());
 }
 
 void Client::readFortune()
@@ -77,16 +77,16 @@ void Client::readFortune()
     statusLabel->setText(currentFortune);
     getFortuneButton->setEnabled(true);
 }
-void Client::displayError(QLocalSocket::LocalSoketError socketError)
+void Client::displayError(QLocalSocket::LocalSocketError socketError)
 {
     switch (socketError){
-    case QLocalsSocket::ServerNotFoundEroor:
+    case QLocalSocket::ServerNotFoundError:
         QMessageBox::information(this, tr("local forrtune Client"),
                                  tr("the host was not found. please make sure"
                                     "that the server name is correct."));
 
         break;
-    case QLocaleSocket::ConnectionRefusedError:
+    case QLocalSocket::ConnectionRefusedError:
         QMessageBox::information(this, tr("Local Fortune Client"),
                                  tr("the connection was refused by the peer."
                                     "make sure the fortune server is running",

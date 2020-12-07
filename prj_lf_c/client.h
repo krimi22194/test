@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QDataStream>
-#include<QLocaleSocket>
+#include<QLocalSocket>
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -21,7 +21,7 @@ public:
 private slots:
     void requestNewFortune();
     void readFortune();
-    void displayError(QLocalSocket::LocalSockettError socketError);
+    void displayError(QLocalSocket::LocalSocketError socketError);
     void enableGetFortuneButton();
 
    private:

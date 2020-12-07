@@ -34,7 +34,7 @@ fortunes << tr("you've been leading a dog's life. Stay off the furniture")
 QPushButton *quitButton = new QPushButton(tr("quit"));
 quitButton->setAutoDefault(false);
 connect(quitButton, &QPushButton::clicked,this,&Server::close);
-connect(server,&QLocalServeur::newConnection, this, &Server::sendFortune);
+connect(server,&QLocalServer::newConnection, this, &Server::sendFortune);
 
 QHBoxLayout *buttonLayout = new QHBoxLayout;
 buttonLayout->addStretch(1);
@@ -60,6 +60,6 @@ void Server::sendFortune()
 
     clientConnection->write(block);
     clientConnection->flush();
-    clientConnection->disconectFromServer();
+    clientConnection->disconnectFromServer();
 
 }

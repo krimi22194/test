@@ -6,7 +6,7 @@
 QT_BEGIN_NAMESPACE
 class QLabel;
 class QPushButton;
-class QLocalServeur;
+class QLocalServer;
 QT_END_NAMESPACE
 class Server : public QDialog
 {
@@ -19,7 +19,7 @@ private slots:
     void sendFortune();
 
 private:
-    QLocalServeur *server;
+    QLocalServer *server;
     QStringList fortunes;
 };
 
